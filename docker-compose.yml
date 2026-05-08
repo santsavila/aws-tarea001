@@ -5,7 +5,10 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_HOST: "%"
       MYSQL_DATABASE: prueba
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: 123456
     volumes:
       - mysql_data:/var/lib/mysql
 
@@ -15,6 +18,7 @@ services:
     restart: always
     environment:
       PMA_HOST: mysql
+      PMA_PORT: 3306
     ports:
       - "8080:80"
     depends_on:
@@ -33,3 +37,4 @@ services:
 
 volumes:
   mysql_data:
+EOF

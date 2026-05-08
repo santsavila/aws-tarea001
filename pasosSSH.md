@@ -59,3 +59,10 @@ User: ubuntu
 Key file: /Users/usuario/Downloads/llave-ubuntu-aws.pem  
 Password: vacío  
 
+
+chmod 400 ~/Downloads/miclave.pem
+
+ssh -i ~/Downloads/miclave.pem -L 8080:localhost:8080 ubuntu@54.198.77.51
+
+Usuario: root
+Contraseña: 123456
