@@ -1,0 +1,35 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql-basico
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: prueba
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin-basico
+    restart: always
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+  web:
+    image: php:8.2-apache
+    container_name: web-basico
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/var/www/html
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
